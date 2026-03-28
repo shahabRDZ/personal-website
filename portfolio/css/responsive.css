@@ -16,9 +16,7 @@
         width: 360px;
     }
 
-    .face__bg,
-    .face__code,
-    .face__paint {
+    .face__bg {
         display: none;
     }
 }
@@ -74,62 +72,68 @@
     }
 
 
-    /* -- Hero: stack vertically -- */
+    /* -- Hero: COMPLETELY restructured for mobile -- */
     .hero {
-        height: auto;
-        min-height: auto;
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
         padding: 0;
         padding-top: var(--header-h);
     }
 
-    /* Remove split background on mobile */
+    /* Single dark background on mobile */
     .hero::before {
         background: var(--black) !important;
     }
 
-    /* Remove bottom gradient */
     .hero::after {
-        height: 60px;
+        height: 40px;
     }
 
+    /* Stack everything vertically */
     .face {
-        width: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 40px 20px 60px;
-        gap: 24px;
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 30px 20px 40px !important;
+        gap: 20px !important;
     }
 
-    /* Photo first, centered */
+    /* Photo: centered, not absolute */
     .face__photo-wrap {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        width: 240px;
-        height: 300px;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        width: 220px !important;
+        height: 280px !important;
         order: 1;
+        margin: 0 auto;
     }
 
-    .face__photo-wrap .face__photo {
-        border-radius: 20px;
+    .face__photo {
+        border-radius: 16px;
         overflow: hidden;
     }
 
     .face__art img,
     .face__real img {
-        border-radius: 20px;
+        border-radius: 16px;
     }
 
-    /* Text sides: stack below photo */
+    /* Text sides: relative, stacked, centered */
     .face__side {
-        position: relative;
-        width: 100%;
-        height: auto;
-        text-align: center !important;
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        display: flex !important;
         justify-content: center !important;
+        text-align: center !important;
         padding: 0 16px !important;
     }
 
@@ -141,21 +145,21 @@
         order: 3;
     }
 
-    /* Override right-side dark colors for mobile (bg is now all dark) */
+    /* On mobile, bg is all dark — right side text needs white */
     .face__side--right .face__title {
-        color: var(--pure-white);
+        color: var(--pure-white) !important;
     }
 
     .face__side--right .face__subtitle {
-        color: var(--gray);
+        color: var(--gray) !important;
     }
 
     .face__side--right .face__subtitle strong {
-        color: var(--pure-white);
+        color: var(--pure-white) !important;
     }
 
     .face__side--right .face__badge {
-        color: #38d9a9;
+        color: #38d9a9 !important;
     }
 
     .face__desc {
@@ -163,23 +167,36 @@
     }
 
     .face__title {
-        font-size: 2rem;
-        margin-bottom: 10px;
+        font-size: 1.8rem !important;
+        margin-bottom: 8px;
     }
 
     .face__subtitle {
-        font-size: 0.9rem;
+        font-size: 0.88rem !important;
+        line-height: 1.5;
     }
 
     .face__badge {
-        font-size: 0.72rem;
+        font-size: 0.72rem !important;
+        margin-top: 10px !important;
     }
 
-    /* Hide decorations on mobile */
-    .face__code,
-    .face__paint,
+    /* HIDE all decorations on mobile — they cause overlap */
+    .face__code {
+        display: none !important;
+    }
+
+    .face__paint {
+        display: none !important;
+    }
+
     .face__bg {
-        display: none;
+        display: none !important;
+    }
+
+    .face__bg--left,
+    .face__bg--right {
+        display: none !important;
     }
 
 
@@ -189,7 +206,7 @@
     }
 
     .section__header {
-        margin-bottom: 32px;
+        margin-bottom: 28px;
     }
 
     .section__title {
@@ -200,11 +217,11 @@
     /* Cards: single column */
     .card-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 14px;
     }
 
     .card__thumb {
-        height: 140px;
+        height: 130px;
     }
 
     .card__body {
@@ -223,11 +240,11 @@
     /* -- Contact -- */
     .contact-wrap {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 20px;
     }
 
     .contact-form {
-        padding: 24px 20px;
+        padding: 20px 16px;
     }
 
     .contact-form__row {
@@ -239,15 +256,19 @@
         justify-content: center;
     }
 
+    .contact-side__link {
+        padding: 16px;
+    }
+
 
     /* -- Hashtags -- */
     .hashtags {
-        gap: 8px;
+        gap: 6px;
     }
 
     .hashtag {
-        font-size: 0.7rem;
-        padding: 4px 12px;
+        font-size: 0.68rem;
+        padding: 4px 10px;
     }
 
 
@@ -275,30 +296,26 @@
 /* ---- Small phone (max 400px) ---- */
 @media (max-width: 400px) {
     .face__photo-wrap {
-        width: 200px;
-        height: 250px;
+        width: 180px !important;
+        height: 230px !important;
     }
 
     .face__title {
-        font-size: 1.6rem;
+        font-size: 1.5rem !important;
     }
 
     .face__subtitle {
-        font-size: 0.82rem;
+        font-size: 0.8rem !important;
     }
 
     .header__controls {
-        gap: 6px;
+        gap: 4px;
     }
 
     .theme-toggle {
-        width: 32px;
-        height: 32px;
-        font-size: 0.8rem;
-    }
-
-    .contact-form {
-        padding: 20px 16px;
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
     }
 }
 
@@ -352,7 +369,6 @@ body.rtl .footer__nav {
     direction: ltr;
 }
 
-/* RTL on mobile */
 @media (max-width: 768px) {
     body.rtl .face__side {
         text-align: center !important;
