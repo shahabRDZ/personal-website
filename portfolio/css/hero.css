@@ -1,0 +1,265 @@
+/* ======================
+   Hero — Split Face (Adham style)
+   Left half: colorful animated background
+   Right half: clean white like original photo
+   ====================== */
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    min-height: 650px;
+    position: relative;
+    overflow: hidden;
+    padding-top: var(--header-h);
+}
+
+/* ---- Split background: left dark, right white (default dark mode) ---- */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        var(--black) 0%,
+        var(--black) 50%,
+        #f0f0f0 50%,
+        #f0f0f0 100%
+    );
+    z-index: 0;
+}
+
+/* Light mode: left stays dark for cartoon, right becomes light bg */
+body.light .hero::before {
+    background: linear-gradient(
+        to right,
+        #1a1a1a 0%,
+        #1a1a1a 50%,
+        #f5f5f5 50%,
+        #f5f5f5 100%
+    );
+}
+
+/* ---- Face container ---- */
+.face {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: calc(100vh - var(--header-h));
+    margin: 0 auto;
+    z-index: 2;
+}
+
+/* ---- Photo wrapper — big, centered, bottom-aligned ---- */
+.face__photo-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    width: 480px;
+    height: 88%;
+}
+
+.face__photo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---- Shared base for both halves ---- */
+.face__art,
+.face__real {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---- Left half — CARTOON / ANIME ---- */
+.face__art {
+    clip-path: inset(0 50% 0 0);
+    z-index: 2;
+}
+
+.face__art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 18%;
+    transform: scale(0.92);
+    transform-origin: center 22%;
+}
+
+
+/* ---- Right half — ORIGINAL clean photo (white bg) ---- */
+.face__real {
+    clip-path: inset(0 0 0 50%);
+    z-index: 2;
+}
+
+.face__real img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%;
+    transform: scale(0.92);
+    transform-origin: center 22%;
+    /* No filters — keep original clean look */
+}
+
+
+/* ---- Left & Right text ---- */
+.face__side {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.face__side--left {
+    left: 0;
+    padding-left: 4%;
+}
+
+.face__side--right {
+    right: 0;
+    padding-right: 4%;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.face__desc {
+    max-width: 280px;
+    pointer-events: auto;
+}
+
+.face__title {
+    font-size: clamp(3.5rem, 6.5vw, 6rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 16px;
+}
+
+/* Left side text: white on dark bg */
+.face__side--left .face__title {
+    color: var(--pure-white);
+}
+
+.face__side--left .face__subtitle {
+    color: var(--gray);
+}
+
+.face__side--left .face__subtitle strong {
+    color: var(--pure-white);
+}
+
+/* Right side text: dark on white bg */
+.face__side--right .face__title {
+    color: #111;
+}
+
+.face__side--right .face__subtitle {
+    color: #757575;
+}
+
+.face__side--right .face__subtitle strong {
+    color: #111;
+}
+
+/* Light mode: right half text adjustments */
+body.light .face__side--right .face__title { color: #111; }
+body.light .face__side--right .face__subtitle { color: #757575; }
+body.light .face__side--right .face__subtitle strong { color: #111; }
+
+.face__title .chevron {
+    font-weight: 300;
+    color: var(--gray);
+}
+
+.face__subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Badge */
+.face__side--left .face__badge {
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: #38d9a9;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.face__side--right .face__badge {
+    margin-top: 14px;
+    font-size: 0.78rem;
+    color: #5b4cc4;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+
+/* ---- Code decorations (right bottom) — dark text on white ---- */
+.face__code {
+    position: absolute;
+    bottom: 30px;
+    right: 4%;
+    z-index: 8;
+    font-family: var(--font-mono);
+    color: #ccc;
+    opacity: 0.35;
+    font-size: 0.95rem;
+    text-align: right;
+    line-height: 2.2;
+    pointer-events: none;
+}
+
+.face__code .tag {
+    display: block;
+}
+
+.face__code .big {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+
+/* ---- Paint splatter (left bottom — colorful on dark) ---- */
+.face__paint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30%;
+    height: 30%;
+    z-index: 3;
+    opacity: 0.15;
+    background:
+        radial-gradient(ellipse at 30% 55%, rgba(239, 71, 58, 0.9) 0%, transparent 50%),
+        radial-gradient(ellipse at 65% 35%, rgba(0, 172, 219, 0.8) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 80%, rgba(255, 193, 7, 0.7) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+
+/* ---- Bottom gradient fade ---- */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--dark)
+    );
+    z-index: 15;
+    pointer-events: none;
+}

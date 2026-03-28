@@ -1,0 +1,77 @@
+/* ======================
+   Base — Reset & Variables
+   ====================== */
+
+:root {
+    --black:     #0e0e0e;
+    --dark:      #161616;
+    --dark-2:    #1e1e1e;
+    --dark-3:    #282828;
+    --gray:      #757575;
+    --gray-light:#999;
+    --white:     #f0f0f0;
+    --pure-white:#fff;
+    --accent:    #7c6aef;
+
+    --font: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --header-h: 72px;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font);
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Light theme ---- */
+body.light {
+    --black: #ffffff;
+    --dark: #f5f5f5;
+    --dark-2: #eeeeee;
+    --dark-3: #e0e0e0;
+    --gray: #757575;
+    --gray-light: #555;
+    --white: #1a1a1a;
+    --pure-white: #111;
+    --accent: #7c6aef;
+}
+
+/* ---- RTL support ---- */
+body.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+ul { list-style: none; }
+
+button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+}

@@ -1,0 +1,99 @@
+/* ======================
+   Components — Cards
+   ====================== */
+
+/* ---- Portfolio / Service Card ---- */
+.card {
+    background: var(--dark-2);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px);
+}
+
+/* Card thumbnail — supports gradient backgrounds set inline */
+.card__thumb {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.card__thumb-icon {
+    font-size: 2.8rem;
+    color: white;
+    opacity: 0.7;
+    transition: all 0.4s;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover .card__thumb-icon {
+    opacity: 1;
+    transform: scale(1.12);
+}
+
+/* Card body */
+.card__body {
+    padding: 20px 20px 24px;
+    flex: 1;
+}
+
+.card__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--white);
+}
+
+.card__sub {
+    font-size: 0.88rem;
+    color: var(--gray);
+    line-height: 1.5;
+}
+
+/* Hover arrow */
+.card__arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    opacity: 0;
+    transform: translateX(8px);
+    transition: all 0.35s;
+}
+
+.card:hover .card__arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ---- Light mode cards ---- */
+body.light .card {
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+body.light .card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.light .card__title { color: #111; }
+body.light .card__sub { color: #757575; }

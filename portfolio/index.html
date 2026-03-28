@@ -1,487 +1,654 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shahab Rashidian Dezfuly — Software Engineer & Cloud Architect</title>
-    <meta name="description" content="Senior Full Stack Developer, DevOps Engineer & AWS Cloud Architect based in Istanbul. Building scalable systems that matter.">
+    <title>Shahab Rashidian — Engineer & Creator</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        /* ── Theme toggle & lang switcher ── */
+        .header__controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 0.75rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border, rgba(255,255,255,.18));
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            color: var(--text, #fff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: background .2s, color .2s;
+        }
+        .theme-toggle:hover { background: rgba(255,255,255,.1); }
+
+        /* Show moon in dark mode, sun in light mode */
+        html[data-theme="dark"]  .theme-toggle .fa-moon { display: inline-block; }
+        html[data-theme="dark"]  .theme-toggle .fa-sun  { display: none; }
+        html[data-theme="light"] .theme-toggle .fa-moon { display: none; }
+        html[data-theme="light"] .theme-toggle .fa-sun  { display: inline-block; }
+
+        .lang-switch {
+            display: flex;
+            gap: 2px;
+        }
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--border, rgba(255,255,255,.18));
+            color: var(--text-muted, rgba(255,255,255,.55));
+            font-family: inherit;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 3px 7px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+            letter-spacing: 0.03em;
+        }
+        .lang-btn:hover { background: rgba(255,255,255,.1); color: var(--text, #fff); }
+        .lang-btn--active {
+            background: var(--accent, #7c6aef);
+            border-color: var(--accent, #7c6aef);
+            color: #fff;
+        }
+
+        /* ── Gradient card thumbnails ── */
+        .card__thumb {
+            position: relative;
+            overflow: hidden;
+        }
+        .card__thumb--gradient {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card__thumb--gradient .card__thumb-icon {
+            color: rgba(255,255,255,.92);
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,.25);
+        }
+
+        /* RTL support for Arabic */
+        html[lang="ar"] {
+            direction: rtl;
+        }
+        html[lang="ar"] .card__arrow {
+            transform: scaleX(-1);
+        }
+        html[lang="ar"] .contact-form__btn .fa-paper-plane {
+            transform: scaleX(-1);
+        }
+    </style>
 </head>
 <body id="top">
 
-    <!-- Spotlight that follows cursor -->
-    <div class="spotlight" id="spotlight"></div>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="header__inner">
+            <a href="#top" class="header__logo">shahab.</a>
 
-    <!-- Navigation -->
-    <header class="header" id="header">
-        <div class="container header-inner">
-            <a href="#top" class="logo">shahab<span>.</span></a>
             <nav class="nav" id="nav">
-                <a href="#about">about</a>
-                <a href="#services">services</a>
-                <a href="#projects">projects</a>
-                <a href="#experience">experience</a>
-                <a href="#certifications">certifications</a>
-                <a href="#contact">contact</a>
+                <a href="#about" class="nav__link"><span data-i18n="nav_about">about</span></a>
+                <a href="#work" class="nav__link"><span data-i18n="nav_portfolio">portfolio</span></a>
+                <a href="#contact" class="nav__link"><span data-i18n="nav_contact">contact</span></a>
             </nav>
-            <div class="header-social">
-                <a href="https://www.linkedin.com/in/shahab-rashidian-17647a166/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/shahabRDZ" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+
+            <div class="header__social">
+                <a href="https://www.linkedin.com/in/shahab-rashidian-17647a166/" target="_blank" rel="noopener" class="header__social-link"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/shahabRDZ" target="_blank" rel="noopener" class="header__social-link"><i class="fab fa-github"></i></a>
             </div>
+
+            <div class="header__controls">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <div class="lang-switch" id="langSwitch">
+                    <button class="lang-btn lang-btn--active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="tr">TR</button>
+                    <button class="lang-btn" data-lang="ar">AR</button>
+                </div>
+            </div>
+
             <button class="nav-toggle" id="navToggle" aria-label="Menu">
-                <span></span><span></span><span></span>
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
+                <span class="nav-toggle__bar"></span>
             </button>
         </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-bg">
-            <canvas id="gridCanvas"></canvas>
-        </div>
-        <div class="container hero-inner">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="pulse-dot"></span> Open to opportunities
-                </div>
-                <h1>
-                    <span class="hero-line-1">I build things</span>
-                    <span class="hero-line-2">for the <span class="highlight">web</span> & <span class="highlight">cloud</span>.</span>
-                </h1>
-                <p class="hero-subtitle" id="typedText"></p>
-                <p class="hero-desc">
-                    Computer engineer with expertise in backend systems, cloud architecture,
-                    DevOps pipelines, and cross-platform mobile apps. I turn complex problems
-                    into clean, scalable solutions.
-                </p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn-primary">See my work <i class="fas fa-arrow-down"></i></a>
-                    <a href="#contact" class="btn-ghost">Get in touch</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="profile-frame">
-                    <img src="profile.jpg" alt="Shahab Rashidian Dezfuly" class="profile-img"
-                         onerror="this.parentElement.classList.add('no-photo')">
-                    <div class="profile-fallback">
-                        <span class="fallback-initials">SR</span>
-                    </div>
-                    <div class="profile-ring"></div>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-num" data-target="5">0</span><span class="stat-suffix">+</span>
-                        <span class="stat-label">Years<br>Experience</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-num" data-target="15">0</span><span class="stat-suffix">+</span>
-                        <span class="stat-label">Projects<br>Delivered</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-num" data-target="12">0</span><span class="stat-suffix">+</span>
-                        <span class="stat-label">Tech<br>Stack</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- About -->
-    <section class="section" id="about">
-        <div class="container">
-            <h2 class="section-title">about<span>.</span></h2>
-            <p class="section-subtitle">A few things about me and what I do.</p>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>
-                        I'm a Computer Engineering graduate from <strong>Sharif University of Technology</strong> —
-                        one of the most competitive engineering programs in the region. Over the past several years,
-                        I've worked across the full spectrum of software development: from building backend APIs at
-                        scale, to designing cloud-native architectures on AWS, to shipping cross-platform mobile
-                        apps with Flutter.
-                    </p>
-                    <p>
-                        I believe great software starts with understanding the problem deeply before writing a
-                        single line of code. Whether I'm setting up CI/CD pipelines, optimizing database queries,
-                        or prototyping a new mobile experience, I care about building things that are reliable,
-                        maintainable, and genuinely useful.
-                    </p>
-                    <p>
-                        When I'm not coding, you'll find me exploring new AI tools, reading about distributed
-                        systems, or mentoring junior developers — something I've done since my time as a TA at
-                        Sharif.
-                    </p>
-                </div>
-                <div class="about-details">
-                    <div class="detail-card">
-                        <i class="fas fa-graduation-cap"></i>
-                        <div>
-                            <strong>B.Sc. Computer Engineering</strong>
-                            <span>Sharif University of Technology</span>
-                            <span>GPA: 17.54 / 20</span>
-                        </div>
-                    </div>
-                    <div class="detail-card">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Based in Istanbul</strong>
-                            <span>Available worldwide (remote)</span>
-                        </div>
-                    </div>
-                    <div class="detail-card">
-                        <i class="fas fa-language"></i>
-                        <div>
-                            <strong>English — Fluent</strong>
-                            <span>TOEFL: 103/120</span>
-                            <span>Persian — Native</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- SVG Filters for cartoon effect -->
+    <svg class="svg-filters" style="position:absolute;width:0;height:0;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <!-- Heavy Cartoon / Comic filter -->
+            <filter id="cartoon">
+                <!-- Step 1: Heavy blur to lose fine detail -->
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
 
-    <!-- Services / What I Do -->
-    <section class="section section-alt" id="services">
-        <div class="container">
-            <h2 class="section-title">what I do<span>.</span></h2>
-            <p class="section-subtitle">The services and expertise I bring to every project.</p>
-            <div class="services-grid">
-                <div class="service-card" data-aos>
-                    <div class="service-icon"><i class="fas fa-server"></i></div>
-                    <h3>Backend Development</h3>
-                    <p>Designing and building robust APIs, microservices, and server-side systems with Python, PHP, ASP.NET, and SQL databases that handle real-world traffic at scale.</p>
-                </div>
-                <div class="service-card" data-aos>
-                    <div class="service-icon"><i class="fas fa-layer-group"></i></div>
-                    <h3>Full Stack Engineering</h3>
-                    <p>End-to-end development from database schema to pixel-perfect UI. I own the entire stack so nothing gets lost in translation between front and back.</p>
-                </div>
-                <div class="service-card" data-aos>
-                    <div class="service-icon"><i class="fas fa-cloud"></i></div>
-                    <h3>AWS Cloud Architecture</h3>
-                    <p>Infrastructure design on AWS — from EC2 and S3 to Lambda and RDS. I architect systems that are secure, cost-efficient, and ready to scale.</p>
-                </div>
-                <div class="service-card" data-aos>
-                    <div class="service-icon"><i class="fas fa-infinity"></i></div>
-                    <h3>DevOps & CI/CD</h3>
-                    <p>Containerization with Docker, automated pipelines, infrastructure as code. I make deployments boring — which is exactly how they should be.</p>
-                </div>
-                <div class="service-card" data-aos>
-                    <div class="service-icon"><i class="fas fa-mobile-screen-button"></i></div>
-                    <h3>Mobile Development</h3>
-                    <p>Cross-platform mobile apps with Flutter and Dart. One codebase, native performance, beautiful interfaces on both iOS and Android.</p>
-                </div>
-                <div class="service-card" data-aos>
-                    <div class="service-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
-                    <h3>Vibe Coding & AI</h3>
-                    <p>Leveraging AI-assisted development for rapid prototyping and creative problem-solving. Prompt engineering, machine learning, and data-driven insights.</p>
+                <!-- Step 2: Aggressive posterize — fewer color steps = more cartoon -->
+                <feComponentTransfer in="blur" result="posterize">
+                    <feFuncR type="discrete" tableValues="0 0.2 0.45 0.7 1" />
+                    <feFuncG type="discrete" tableValues="0 0.2 0.45 0.7 1" />
+                    <feFuncB type="discrete" tableValues="0 0.2 0.45 0.7 1" />
+                </feComponentTransfer>
+
+                <!-- Step 3: Pump up saturation for vivid cartoon colors -->
+                <feColorMatrix in="posterize" type="saturate" values="3" result="vivid" />
+
+                <!-- Step 4: Brighten slightly -->
+                <feComponentTransfer in="vivid" result="bright">
+                    <feFuncR type="linear" slope="1.15" intercept="0.05" />
+                    <feFuncG type="linear" slope="1.15" intercept="0.05" />
+                    <feFuncB type="linear" slope="1.15" intercept="0.05" />
+                </feComponentTransfer>
+
+                <!-- Step 5: Edge detection for dark outlines -->
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0.7" result="src-soft" />
+                <feConvolveMatrix in="src-soft" order="3" kernelMatrix="
+                    -1 -1 -1
+                    -1  8 -1
+                    -1 -1 -1
+                " result="edges" preserveAlpha="true" />
+
+                <!-- Step 6: Make edges black -->
+                <feColorMatrix in="edges" type="matrix" values="
+                    0 0 0 0 0
+                    0 0 0 0 0
+                    0 0 0 0 0
+                    -5 -5 -5 1 0
+                " result="black-edges" />
+
+                <!-- Step 7: Thicken edges -->
+                <feMorphology in="black-edges" operator="dilate" radius="0.5" result="thick-edges" />
+
+                <!-- Step 8: Combine cartoon colors + dark outlines -->
+                <feBlend in="bright" in2="thick-edges" mode="multiply" />
+            </filter>
+
+            <!-- Professional portrait enhancement -->
+            <filter id="enhance">
+                <!-- Slight smoothing -->
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0.6" result="soft" />
+                <!-- Merge back with sharp original -->
+                <feBlend in="SourceGraphic" in2="soft" mode="normal" result="blended" />
+                <!-- Warm up + boost contrast -->
+                <feColorMatrix in="blended" type="matrix" values="
+                    1.08 0.02 0    0  0.02
+                    0    1.05 0.02 0  0.01
+                    0    0    0.95 0  0
+                    0    0    0    1  0
+                " />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- ===== HERO — SPLIT FACE ===== -->
+    <section class="hero">
+        <div class="face" id="face">
+
+            <!-- Left text: Engineer -->
+            <div class="face__side face__side--left">
+                <div class="face__desc">
+                    <h1 class="face__title" data-i18n="hero_engineer">engineer</h1>
+                    <p class="face__subtitle"><strong data-i18n="hero_senior_backend">Senior Backend Developer</strong> &amp; <strong data-i18n="hero_devops">DevOps Engineer</strong> who builds reliable, <strong>AWS cloud-native</strong> systems at scale.</p>
+                    <p class="face__badge" data-i18n="hero_available">Available for remote work &amp; volunteer projects</p>
                 </div>
             </div>
+
+            <!-- Right text: Creator -->
+            <div class="face__side face__side--right">
+                <div class="face__desc">
+                    <h1 class="face__title"><span class="chevron">&lt;</span>coder<span class="chevron">&gt;</span></h1>
+                    <p class="face__subtitle"><strong data-i18n="hero_fullstack">Senior Full Stack Developer</strong>, <strong>Flutter Developer</strong> &amp; <strong>Vibe Coder</strong> who ships elegant <strong data-i18n="hero_mobile">mobile apps</strong> from idea to production.</p>
+                    <p class="face__badge" data-i18n="hero_open">Open to collaboration &amp; opportunities</p>
+                </div>
+            </div>
+
+            <!-- Photo: two layers for split effect -->
+            <div class="face__photo-wrap" id="photoWrap">
+                <div class="face__photo">
+                    <!-- Left half — cartoon/anime -->
+                    <div class="face__art">
+                        <img src="img/cartoon.jpg" alt="">
+                    </div>
+                    <!-- Right half — real photo -->
+                    <div class="face__real">
+                        <img src="img/profile.jpg" alt="Shahab Rashidian Dezfuly">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code decorations (right bottom) -->
+            <div class="face__code">
+                <span class="tag">&lt;html&gt;</span>
+                <span class="tag">height:184px;</span>
+                <span class="tag">class="engineer"</span>
+                <span class="big">CSS3 HTML5</span>
+                <span class="tag">color:#7c6aef;</span>
+                <span class="tag">Python</span>
+            </div>
+
+            <!-- Paint decoration (left bottom) -->
+            <div class="face__paint"></div>
         </div>
     </section>
 
-    <!-- Projects -->
-    <section class="section" id="projects">
-        <div class="container">
-            <h2 class="section-title">projects<span>.</span></h2>
-            <p class="section-subtitle">Things I've built — from research to production.</p>
-            <div class="projects-grid">
 
-                <!-- Featured -->
-                <a href="https://github.com/shahabRDZ/GAME.Mafia" target="_blank" rel="noopener" class="project-card featured" data-aos>
-                    <div class="project-thumb">
-                        <div class="thumb-placeholder"><i class="fas fa-masks-theater"></i></div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Web App — 2026</span>
-                        <h3>Mafia Party Game</h3>
-                        <p>A real-time multiplayer Mafia game for the web. Containerized with Docker for easy deployment, featuring role assignment, voting mechanics, and live game state management.</p>
-                        <div class="tech-stack">
-                            <span>Python</span><span>HTML</span><span>Docker</span>
-                        </div>
-                    </div>
-                </a>
+    <!-- ===== ABOUT — Card grid ===== -->
+    <section class="section section--dark" id="about">
+        <div class="section__header">
+            <div class="section__line"></div>
+            <h2 class="section__title" data-i18n="about_title">A few things about me</h2>
+        </div>
 
-                <a href="https://github.com/shahabRDZ/HD-desk" target="_blank" rel="noopener" class="project-card" data-aos>
-                    <div class="project-thumb">
-                        <div class="thumb-placeholder"><i class="fas fa-headset"></i></div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Full Stack — 2023</span>
-                        <h3>HDesk Ticketing System</h3>
-                        <p>A help desk ticketing platform for managing support requests. Features ticket creation, assignment, status tracking, and a clean dashboard interface.</p>
-                        <div class="tech-stack">
-                            <span>Python</span><span>HTML</span><span>CSS</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/shahabRDZ/Online_Shop" target="_blank" rel="noopener" class="project-card" data-aos>
-                    <div class="project-thumb">
-                        <div class="thumb-placeholder"><i class="fas fa-cart-shopping"></i></div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Frontend — 2023</span>
-                        <h3>Online Shop</h3>
-                        <p>A modern e-commerce storefront with product browsing, filtering, and a responsive shopping experience built from scratch.</p>
-                        <div class="tech-stack">
-                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://github.com/shahabRDZ/Graphic-Online-Chat-Program" target="_blank" rel="noopener" class="project-card" data-aos>
-                    <div class="project-thumb">
-                        <div class="thumb-placeholder"><i class="fas fa-comments"></i></div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Desktop App — 2023</span>
-                        <h3>Graphic Chat Program</h3>
-                        <p>A two-person graphic online chat application with real-time messaging and file sharing capability. Built with Python's socket programming and GUI frameworks.</p>
-                        <div class="tech-stack">
-                            <span>Python</span><span>Sockets</span><span>GUI</span>
-                        </div>
-                    </div>
-                </a>
-
-                <div class="project-card" data-aos>
-                    <div class="project-thumb">
-                        <div class="thumb-placeholder"><i class="fas fa-shield-halved"></i></div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">B.Sc. Thesis — 2023</span>
-                        <h3>Zero Trust Network Security</h3>
-                        <p>My final thesis at Sharif University. Investigated vulnerabilities in traditional networks and implemented a Zero Trust security model to address modern threat landscapes. Supervised by Dr. Hadi Talebi.</p>
-                        <div class="tech-stack">
-                            <span>Network Security</span><span>Zero Trust</span><span>Research</span>
-                        </div>
-                    </div>
+        <div class="card-grid">
+            <a href="#work" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <i class="fas fa-server card__thumb-icon"></i>
                 </div>
-
-                <a href="https://github.com/shahabRDZ/Numerical-Integration" target="_blank" rel="noopener" class="project-card" data-aos>
-                    <div class="project-thumb">
-                        <div class="thumb-placeholder"><i class="fas fa-square-root-variable"></i></div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Scientific Computing — 2021</span>
-                        <h3>Numerical Integration Engine</h3>
-                        <p>A versatile numerical integrator for computing integrals of arbitrary bounded functions over any interval, with advanced error control mechanisms.</p>
-                        <div class="tech-stack">
-                            <span>R</span><span>Numerical Analysis</span>
-                        </div>
-                    </div>
-                </a>
-
-                <div class="project-card" data-aos>
-                    <div class="project-thumb">
-                        <div class="thumb-placeholder"><i class="fas fa-train-subway"></i></div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Simulation — 2022</span>
-                        <h3>M/G/2 Queueing Simulation</h3>
-                        <p>Simulated and analyzed the performance of a dual-line train station using M/G/2 queueing theory. Tested various arrival rates and service distributions to optimize throughput.</p>
-                        <div class="tech-stack">
-                            <span>R</span><span>Queueing Theory</span><span>Statistics</span>
-                        </div>
-                    </div>
+                <div class="card__body">
+                    <h3 class="card__title">Backend &amp; Cloud</h3>
+                    <p class="card__sub">Python, PHP, ASP.NET, AWS, Docker</p>
                 </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
 
-                <div class="project-card" data-aos>
-                    <div class="project-thumb">
-                        <div class="thumb-placeholder"><i class="fas fa-chart-bar"></i></div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Data Mining — 2021</span>
-                        <h3>E-Commerce Pattern Mining</h3>
-                        <p>Analyzed customer purchase data from Digikala (Iran's largest e-commerce) using Apriori and FPGrowth algorithms to discover frequent buying patterns and calculate support/confidence metrics.</p>
-                        <div class="tech-stack">
-                            <span>Data Mining</span><span>Apriori</span><span>FPGrowth</span>
-                        </div>
-                    </div>
+            <a href="#work" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    <i class="fas fa-layer-group card__thumb-icon"></i>
                 </div>
+                <div class="card__body">
+                    <h3 class="card__title">Full Stack</h3>
+                    <p class="card__sub">End-to-end from database to UI</p>
+                </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
 
-                <a href="https://github.com/shahabRDZ/cacti-menu" target="_blank" rel="noopener" class="project-card" data-aos>
-                    <div class="project-thumb">
-                        <div class="thumb-placeholder"><i class="fas fa-utensils"></i></div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Web App — 2025</span>
-                        <h3>Cacti Menu</h3>
-                        <p>A digital menu and ordering system for restaurants, built with Python backend and a clean HTML frontend.</p>
-                        <div class="tech-stack">
-                            <span>Python</span><span>HTML</span><span>Web</span>
-                        </div>
-                    </div>
-                </a>
+            <a href="#work" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <i class="fas fa-mobile-screen-button card__thumb-icon"></i>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title">Mobile &amp; Flutter</h3>
+                    <p class="card__sub">Cross-platform apps, native feel</p>
+                </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
 
-            </div>
+            <a href="https://www.linkedin.com/in/shahab-rashidian-17647a166/" target="_blank" rel="noopener" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                    <i class="fas fa-graduation-cap card__thumb-icon"></i>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title" data-i18n="about_sharif">Sharif University</h3>
+                    <p class="card__sub" data-i18n="about_bsc">B.Sc. Computer Engineering, GPA 17.54/20</p>
+                </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="#work" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                    <i class="fas fa-infinity card__thumb-icon"></i>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title">DevOps &amp; CI/CD</h3>
+                    <p class="card__sub">Docker, pipelines, infrastructure as code</p>
+                </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="#work" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb);">
+                    <i class="fas fa-wand-magic-sparkles card__thumb-icon"></i>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title">Vibe Coding &amp; AI</h3>
+                    <p class="card__sub">AI-assisted dev, rapid prototyping</p>
+                </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
         </div>
     </section>
 
-    <!-- Experience -->
-    <section class="section section-alt" id="experience">
-        <div class="container">
-            <h2 class="section-title">experience<span>.</span></h2>
-            <p class="section-subtitle">Where I've worked and what I've built.</p>
-            <div class="timeline">
-                <div class="timeline-item" data-aos>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">Aug 2022 — Present</span>
-                            <span class="badge-current">Current</span>
-                        </div>
-                        <h3>Freelance Software Developer</h3>
-                        <p class="timeline-company">Independent — Remote</p>
-                        <p>Building end-to-end software solutions for clients across industries. From backend APIs and cloud deployments to mobile apps and DevOps pipelines — I handle the full lifecycle from architecture to production.</p>
-                    </div>
+
+    <!-- ===== PORTFOLIO — Projects ===== -->
+    <section class="section" id="work">
+        <div class="section__header">
+            <div class="section__line"></div>
+            <h2 class="section__title" data-i18n="work_title">Some of my latest work</h2>
+        </div>
+
+        <div class="card-grid">
+            <a href="https://github.com/shahabRDZ/GAME.Mafia" target="_blank" rel="noopener" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #ff0844, #ffb199);">
+                    <i class="fas fa-masks-theater card__thumb-icon"></i>
                 </div>
-                <div class="timeline-item" data-aos>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">2021 — 2023</span>
-                        </div>
-                        <h3>Teaching Assistant</h3>
-                        <p class="timeline-company">Sharif University of Technology — Supervisor: Dr. Farahani</p>
-                        <p>TA for three courses: Information Technology (Spring 2023), Design of Compilers (Fall 2022), and Analysis & Design of Systems (Fall 2021). Graded assignments, held office hours, and mentored students on course projects.</p>
-                    </div>
+                <div class="card__body">
+                    <h3 class="card__title">Mafia Party Game</h3>
+                    <p class="card__sub" data-i18n="work_mafia_sub">Real-time multiplayer web app</p>
                 </div>
-                <div class="timeline-item" data-aos>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">Jul 2022 — Nov 2022</span>
-                        </div>
-                        <h3>Backend Developer</h3>
-                        <p class="timeline-company">Zino Tech — Kish Island, Iran</p>
-                        <p>Developed backend services and REST APIs for the company's products. Worked on database optimization, server-side logic, and integration with third-party services.</p>
-                    </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://github.com/shahabRDZ/HD-desk" target="_blank" rel="noopener" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #96fbc4, #f9f586);">
+                    <i class="fas fa-headset card__thumb-icon"></i>
                 </div>
-                <div class="timeline-item" data-aos>
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-card">
-                        <div class="timeline-meta">
-                            <span class="timeline-date">Apr 2019 — Sep 2019</span>
-                        </div>
-                        <h3>Backend Developer</h3>
-                        <p class="timeline-company">AloPeyk</p>
-                        <p>Backend development at one of Iran's leading on-demand delivery platforms. Built scalable services handling high-volume logistics operations — real-time order routing, driver assignment, and delivery tracking.</p>
-                    </div>
+                <div class="card__body">
+                    <h3 class="card__title">HDesk Ticketing</h3>
+                    <p class="card__sub" data-i18n="work_hdesk_sub">Help desk &amp; support platform</p>
+                </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://github.com/shahabRDZ/Online_Shop" target="_blank" rel="noopener" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #ffecd2, #fcb69f);">
+                    <i class="fas fa-cart-shopping card__thumb-icon"></i>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title" data-i18n="work_shop_title">Online Shop</h3>
+                    <p class="card__sub" data-i18n="work_shop_sub">E-commerce storefront</p>
+                </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://github.com/shahabRDZ/Graphic-Online-Chat-Program" target="_blank" rel="noopener" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #a1c4fd, #c2e9fb);">
+                    <i class="fas fa-comments card__thumb-icon"></i>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title" data-i18n="work_chat_title">Chat Program</h3>
+                    <p class="card__sub" data-i18n="work_chat_sub">Real-time messaging with file sharing</p>
+                </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <div class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #d4fc79, #96e6a1);">
+                    <i class="fas fa-shield-halved card__thumb-icon"></i>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title">Zero Trust Security</h3>
+                    <p class="card__sub" data-i18n="work_zerotrust_sub">B.Sc. thesis — network security research</p>
                 </div>
             </div>
+
+            <a href="https://github.com/shahabRDZ/cacti-menu" target="_blank" rel="noopener" class="card">
+                <div class="card__thumb card__thumb--gradient" style="background: linear-gradient(135deg, #fda085, #f6d365);">
+                    <i class="fas fa-utensils card__thumb-icon"></i>
+                </div>
+                <div class="card__body">
+                    <h3 class="card__title">Cacti Menu</h3>
+                    <p class="card__sub" data-i18n="work_cacti_sub">Restaurant digital menu system</p>
+                </div>
+                <div class="card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </a>
         </div>
     </section>
 
-    <!-- Certifications & Publications -->
-    <section class="section" id="certifications">
-        <div class="container">
-            <h2 class="section-title">certifications & research<span>.</span></h2>
-            <p class="section-subtitle">Courses I've completed and papers I've published.</p>
 
-            <div class="certs-grid">
-                <h3 class="certs-group-title"><i class="fas fa-certificate"></i> Certifications</h3>
-                <div class="certs-list">
-                    <div class="cert-card" data-aos>
-                        <div class="cert-icon"><i class="fab fa-google"></i></div>
-                        <div class="cert-info">
-                            <strong>Google Ads Search Certificate</strong>
-                            <span>Google</span>
-                        </div>
-                    </div>
-                    <div class="cert-card" data-aos>
-                        <div class="cert-icon"><i class="fas fa-code"></i></div>
-                        <div class="cert-info">
-                            <strong>PHP with MySQL — Build Real Estate Management System</strong>
-                            <span>Udemy</span>
-                        </div>
-                    </div>
-                    <div class="cert-card" data-aos>
-                        <div class="cert-icon"><i class="fas fa-users-gear"></i></div>
-                        <div class="cert-info">
-                            <strong>Leadership Theory, Skill Development, Motivation & Application</strong>
-                            <span>Udemy</span>
-                        </div>
-                    </div>
-                    <div class="cert-card" data-aos>
-                        <div class="cert-icon"><i class="fas fa-box"></i></div>
-                        <div class="cert-info">
-                            <strong>Product Management</strong>
-                            <span>Great Learning</span>
-                        </div>
-                    </div>
-                    <div class="cert-card" data-aos>
-                        <div class="cert-icon"><i class="fas fa-list-check"></i></div>
-                        <div class="cert-info">
-                            <strong>Project Management + Scrum Project Delivery</strong>
-                            <span>Udemy</span>
-                        </div>
-                    </div>
-                    <div class="cert-card" data-aos>
-                        <div class="cert-icon"><i class="fas fa-flask"></i></div>
-                        <div class="cert-info">
-                            <strong>Certificate of Initial Acceptance</strong>
-                            <span>8th International Conference on Applied Research in Basic Sciences, Engineering & Technology</span>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="certs-group-title" style="margin-top:56px;"><i class="fas fa-book-open"></i> Publications</h3>
-                <div class="certs-list">
-                    <div class="cert-card pub" data-aos>
-                        <div class="cert-icon"><i class="fas fa-file-lines"></i></div>
-                        <div class="cert-info">
-                            <strong>Examining the Negative Effects of Virtual Networks for Children and Teenagers</strong>
-                            <span>A. Ranjbar, S. Novkarizi, <em>S. Rashidian Dezfuly</em> — Avicenna Int'l Community College, Sep 2023</span>
-                        </div>
-                    </div>
-                    <div class="cert-card pub" data-aos>
-                        <div class="cert-icon"><i class="fas fa-file-lines"></i></div>
-                        <div class="cert-info">
-                            <strong>Analysis of Applications of Internet of Things in Healthcare</strong>
-                            <span>A. Zakarian, M. Rahmani, <em>S. Rashidian Dezfuly</em> — Avicenna Int'l Community College, Sep 2023</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- ===== CONTACT ===== -->
+    <section class="section section--dark" id="contact">
+        <div class="section__header">
+            <div class="section__line"></div>
+            <h2 class="section__title" data-i18n="contact_title">Get in touch</h2>
         </div>
-    </section>
 
-    <!-- Contact -->
-    <section class="section section-alt" id="contact">
-        <div class="container contact-container">
-            <h2 class="section-title">let's talk<span>.</span></h2>
-            <p class="section-subtitle">Have a project in mind or want to collaborate? I'd love to hear from you.</p>
-            <div class="contact-cards">
-                <a href="https://www.linkedin.com/in/shahab-rashidian-17647a166/" target="_blank" rel="noopener" class="contact-link-card">
+        <div class="contact-wrap">
+            <!-- Message form -->
+            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST" id="contactForm">
+                <h3 class="contact-form__title" data-i18n="contact_form_title">Send me a message</h3>
+                <div class="contact-form__row">
+                    <div class="contact-form__field">
+                        <label for="name" data-i18n="contact_name">Name</label>
+                        <input type="text" id="name" name="name" data-i18n-placeholder="contact_name_ph" placeholder="Your name" required>
+                    </div>
+                    <div class="contact-form__field">
+                        <label for="email" data-i18n="contact_email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                </div>
+                <div class="contact-form__field">
+                    <label for="subject" data-i18n="contact_subject">Subject</label>
+                    <input type="text" id="subject" name="subject" data-i18n-placeholder="contact_subject_ph" placeholder="What's this about?">
+                </div>
+                <div class="contact-form__field">
+                    <label for="message" data-i18n="contact_message">Message</label>
+                    <textarea id="message" name="message" rows="5" data-i18n-placeholder="contact_message_ph" placeholder="Write your message here..." required></textarea>
+                </div>
+                <button type="submit" class="contact-form__btn">
+                    <span data-i18n="contact_send">Send Message</span> <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+
+            <!-- Social links -->
+            <div class="contact-side">
+                <h3 class="contact-side__title" data-i18n="contact_find">Or find me here</h3>
+                <a href="https://www.linkedin.com/in/shahab-rashidian-17647a166/" target="_blank" rel="noopener" class="contact-side__link">
                     <i class="fab fa-linkedin-in"></i>
-                    <strong>LinkedIn</strong>
-                    <span>Let's connect <i class="fas fa-arrow-right"></i></span>
+                    <div>
+                        <strong>LinkedIn</strong>
+                        <span data-i18n="contact_linkedin">Let's connect</span>
+                    </div>
                 </a>
-                <a href="https://github.com/shahabRDZ" target="_blank" rel="noopener" class="contact-link-card">
+                <a href="https://github.com/shahabRDZ" target="_blank" rel="noopener" class="contact-side__link">
                     <i class="fab fa-github"></i>
-                    <strong>GitHub</strong>
-                    <span>See my code <i class="fas fa-arrow-right"></i></span>
+                    <div>
+                        <strong>GitHub</strong>
+                        <span data-i18n="contact_github">See my code</span>
+                    </div>
                 </a>
+                <div class="contact-side__note">
+                    <i class="fas fa-globe"></i>
+                    <p data-i18n="contact_note">Available for <strong>remote work</strong> worldwide and eager to contribute to <strong>volunteer &amp; open-source projects</strong>.</p>
+                </div>
             </div>
-            <p class="contact-note">For business inquiries, reach out via LinkedIn direct message.</p>
         </div>
     </section>
 
-    <!-- Footer -->
+
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div class="container footer-inner">
-            <a href="#top" class="logo">shahab<span>.</span></a>
-            <p>&copy; 2026 Shahab Rashidian Dezfuly. Built with passion.</p>
-            <a href="#top" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+        <div class="footer__inner">
+            <a href="#top" class="footer__left">&copy; 2026 Shahab Rashidian Dezfuly</a>
+            <nav class="footer__nav">
+                <a href="#about" data-i18n="nav_about">about</a>
+                <a href="#work" data-i18n="nav_portfolio">portfolio</a>
+                <a href="#contact" data-i18n="nav_contact">contact</a>
+            </nav>
         </div>
+        <a href="#top" class="footer__top" aria-label="Back to top"><i class="fas fa-chevron-up"></i></a>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/hero.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+    // ── i18n translations ──────────────────────────────────────────
+    const translations = {
+        en: {
+            nav_about:           "about",
+            nav_portfolio:       "portfolio",
+            nav_contact:         "contact",
+            hero_engineer:       "engineer",
+            hero_senior_backend: "Senior Backend Developer",
+            hero_devops:         "DevOps Engineer",
+            hero_available:      "Available for remote work & volunteer projects",
+            hero_fullstack:      "Senior Full Stack Developer",
+            hero_mobile:         "mobile apps",
+            hero_open:           "Open to collaboration & opportunities",
+            about_title:         "A few things about me",
+            about_sharif:        "Sharif University",
+            about_bsc:           "B.Sc. Computer Engineering, GPA 17.54/20",
+            work_title:          "Some of my latest work",
+            work_mafia_sub:      "Real-time multiplayer web app",
+            work_hdesk_sub:      "Help desk & support platform",
+            work_shop_title:     "Online Shop",
+            work_shop_sub:       "E-commerce storefront",
+            work_chat_title:     "Chat Program",
+            work_chat_sub:       "Real-time messaging with file sharing",
+            work_zerotrust_sub:  "B.Sc. thesis — network security research",
+            work_cacti_sub:      "Restaurant digital menu system",
+            contact_title:       "Get in touch",
+            contact_form_title:  "Send me a message",
+            contact_name:        "Name",
+            contact_email:       "Email",
+            contact_subject:     "Subject",
+            contact_message:     "Message",
+            contact_name_ph:     "Your name",
+            contact_subject_ph:  "What's this about?",
+            contact_message_ph:  "Write your message here...",
+            contact_send:        "Send Message",
+            contact_find:        "Or find me here",
+            contact_linkedin:    "Let's connect",
+            contact_github:      "See my code",
+            contact_note:        "Available for <strong>remote work</strong> worldwide and eager to contribute to <strong>volunteer &amp; open-source projects</strong>.",
+        },
+        tr: {
+            nav_about:           "hakkımda",
+            nav_portfolio:       "portföy",
+            nav_contact:         "iletişim",
+            hero_engineer:       "mühendis",
+            hero_senior_backend: "Kıdemli Backend Geliştirici",
+            hero_devops:         "DevOps Mühendisi",
+            hero_available:      "Uzaktan çalışma ve gönüllü projeler için müsait",
+            hero_fullstack:      "Kıdemli Full Stack Geliştirici",
+            hero_mobile:         "mobil uygulamalar",
+            hero_open:           "İş birliği ve fırsatlara açık",
+            about_title:         "Hakkımda birkaç bilgi",
+            about_sharif:        "Sharif Üniversitesi",
+            about_bsc:           "Bilgisayar Mühendisliği Lisans, GPA 17.54/20",
+            work_title:          "Son çalışmalarımdan bazıları",
+            work_mafia_sub:      "Gerçek zamanlı çok oyunculu web uygulaması",
+            work_hdesk_sub:      "Yardım masası ve destek platformu",
+            work_shop_title:     "Online Mağaza",
+            work_shop_sub:       "E-ticaret mağazası",
+            work_chat_title:     "Sohbet Programı",
+            work_chat_sub:       "Dosya paylaşımlı gerçek zamanlı mesajlaşma",
+            work_zerotrust_sub:  "Lisans tezi — ağ güvenliği araştırması",
+            work_cacti_sub:      "Restoran dijital menü sistemi",
+            contact_title:       "İletişime geçin",
+            contact_form_title:  "Bana mesaj gönderin",
+            contact_name:        "İsim",
+            contact_email:       "E-posta",
+            contact_subject:     "Konu",
+            contact_message:     "Mesaj",
+            contact_name_ph:     "Adınız",
+            contact_subject_ph:  "Konu nedir?",
+            contact_message_ph:  "Mesajınızı buraya yazın...",
+            contact_send:        "Mesaj Gönder",
+            contact_find:        "Veya beni burada bulun",
+            contact_linkedin:    "Bağlanalım",
+            contact_github:      "Kodlarımı gör",
+            contact_note:        "Dünya genelinde <strong>uzaktan çalışmaya</strong> müsait ve <strong>gönüllü &amp; açık kaynak projelere</strong> katkıda bulunmaya istekli.",
+        },
+        ar: {
+            nav_about:           "عني",
+            nav_portfolio:       "أعمالي",
+            nav_contact:         "تواصل",
+            hero_engineer:       "مهندس",
+            hero_senior_backend: "مطور خلفي أول",
+            hero_devops:         "مهندس DevOps",
+            hero_available:      "متاح للعمل عن بُعد والمشاريع التطوعية",
+            hero_fullstack:      "مطور Full Stack أول",
+            hero_mobile:         "تطبيقات الجوال",
+            hero_open:           "منفتح على التعاون والفرص",
+            about_title:         "بعض المعلومات عني",
+            about_sharif:        "جامعة شريف",
+            about_bsc:           "بكالوريوس هندسة حاسوب، معدل 17.54/20",
+            work_title:          "بعض أحدث أعمالي",
+            work_mafia_sub:      "تطبيق ويب متعدد اللاعبين",
+            work_hdesk_sub:      "منصة دعم فني",
+            work_shop_title:     "متجر إلكتروني",
+            work_shop_sub:       "واجهة تجارة إلكترونية",
+            work_chat_title:     "برنامج محادثة",
+            work_chat_sub:       "مراسلة فورية مع مشاركة الملفات",
+            work_zerotrust_sub:  "مشروع تخرج — بحث أمن الشبكات",
+            work_cacti_sub:      "نظام قائمة رقمية للمطاعم",
+            contact_title:       "تواصل معي",
+            contact_form_title:  "أرسل لي رسالة",
+            contact_name:        "الاسم",
+            contact_email:       "البريد الإلكتروني",
+            contact_subject:     "الموضوع",
+            contact_message:     "الرسالة",
+            contact_name_ph:     "اسمك",
+            contact_subject_ph:  "ما الموضوع؟",
+            contact_message_ph:  "اكتب رسالتك هنا...",
+            contact_send:        "إرسال",
+            contact_find:        "أو تجدني هنا",
+            contact_linkedin:    "لنتواصل",
+            contact_github:      "شاهد أكوادي",
+            contact_note:        "متاح للعمل عن <strong>بُعد</strong> حول العالم ومتحمس للمساهمة في <strong>المشاريع التطوعية والمفتوحة المصدر</strong>.",
+        }
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+
+    function applyLang(lang) {
+        const t = translations[lang];
+        if (!t) return;
+        currentLang = lang;
+        localStorage.setItem('lang', lang);
+
+        // Set html lang + dir
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+        // Translate text nodes
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+
+        // Translate placeholders
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-i18n-placeholder');
+            if (t[key] !== undefined) el.placeholder = t[key];
+        });
+
+        // Update active button
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('lang-btn--active', btn.dataset.lang === lang);
+        });
+    }
+
+    // Language switcher
+    document.getElementById('langSwitch').addEventListener('click', e => {
+        const btn = e.target.closest('.lang-btn');
+        if (btn) applyLang(btn.dataset.lang);
+    });
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    let currentTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        localStorage.setItem('theme', currentTheme);
+    });
+
+    // Init on page load
+    applyLang(currentLang);
+    </script>
 </body>
 </html>

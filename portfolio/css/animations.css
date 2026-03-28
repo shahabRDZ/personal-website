@@ -1,0 +1,76 @@
+/* ======================
+   Animations
+   ====================== */
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-100%); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideFromLeft {
+    from { opacity: 0; transform: translateX(-120px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideFromRight {
+    from { opacity: 0; transform: translateX(120px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Header */
+.header {
+    animation: slideDown 1s ease both;
+}
+
+/* Face elements entrance */
+.face__art {
+    animation: slideFromLeft 1s ease 0.3s both;
+}
+
+.face__real {
+    animation: slideFromRight 1s ease 0.3s both;
+}
+
+.face__side--left .face__desc {
+    animation: fadeUp 0.8s ease 0.8s both;
+}
+
+.face__side--right .face__desc {
+    animation: fadeUp 0.8s ease 1s both;
+}
+
+.face__code {
+    animation: fadeIn 1s ease 1.3s both;
+}
+
+.face__paint {
+    animation: fadeIn 1s ease 1.5s both;
+}
+
+/* Cards reveal */
+.card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s;
+}
+
+.card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-grid .card:nth-child(2) { transition-delay: 0.08s; }
+.card-grid .card:nth-child(3) { transition-delay: 0.16s; }
+.card-grid .card:nth-child(4) { transition-delay: 0.24s; }
+.card-grid .card:nth-child(5) { transition-delay: 0.32s; }
+.card-grid .card:nth-child(6) { transition-delay: 0.4s; }
