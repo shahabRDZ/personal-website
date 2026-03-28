@@ -1,7 +1,8 @@
 /* ======================
-   Responsive
+   Responsive — Mobile & Tablet
    ====================== */
 
+/* ---- Tablet (max 900px) ---- */
 @media (max-width: 900px) {
     .card-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -11,16 +12,26 @@
         font-size: 2.8rem;
     }
 
-    .face__photo {
-        width: 260px;
-        height: 260px;
+    .face__photo-wrap {
+        width: 360px;
     }
 
-    .face__bg { display: none; }
+    .face__bg,
+    .face__code,
+    .face__paint {
+        display: none;
+    }
 }
 
+
+/* ---- Mobile (max 768px) ---- */
 @media (max-width: 768px) {
-    /* Nav */
+
+    /* -- Header -- */
+    .header {
+        padding: 0 16px;
+    }
+
     .nav {
         position: fixed;
         top: 0;
@@ -34,7 +45,9 @@
         z-index: 200;
     }
 
-    .nav--open { right: 0; }
+    .nav--open {
+        right: 0;
+    }
 
     .nav__link {
         line-height: 1;
@@ -44,25 +57,39 @@
         font-size: 1.1rem;
     }
 
-    .header__social { display: none; }
-    .nav-toggle { display: flex; }
-
-    /* Controls positioning on mobile */
-    .header__controls {
-        position: absolute;
-        right: 60px;
-        top: 50%;
-        transform: translateY(-50%);
+    .header__social {
+        display: none;
     }
 
-    /* Hide lang switch in header on mobile; show inside nav when open */
-    .lang-switch { display: none; }
-    .nav--open .lang-switch-mobile { display: flex; }
+    .nav-toggle {
+        display: flex;
+    }
 
-    /* Hero */
+    .header__controls {
+        margin-right: 8px;
+    }
+
+    .lang-switch {
+        display: none;
+    }
+
+
+    /* -- Hero: stack vertically -- */
     .hero {
+        height: auto;
         min-height: auto;
-        padding: 120px 20px 60px;
+        padding: 0;
+        padding-top: var(--header-h);
+    }
+
+    /* Remove split background on mobile */
+    .hero::before {
+        background: var(--black) !important;
+    }
+
+    /* Remove bottom gradient */
+    .hero::after {
+        height: 60px;
     }
 
     .face {
@@ -71,53 +98,214 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 32px;
+        padding: 40px 20px 60px;
+        gap: 24px;
     }
 
-    .face__side {
-        position: relative;
-        width: 100%;
-        text-align: center !important;
-        justify-content: center !important;
-        padding: 0 !important;
-    }
-
-    .face__side--left  { order: 2; }
-    .face__side--right { order: 3; }
-
-    .face__desc { max-width: 100%; }
-
+    /* Photo first, centered */
     .face__photo-wrap {
         position: relative;
         top: auto;
         left: auto;
         transform: none;
+        width: 240px;
+        height: 300px;
         order: 1;
     }
 
-    .face__photo {
-        width: 200px;
-        height: 200px;
+    .face__photo-wrap .face__photo {
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .face__art img,
+    .face__real img {
+        border-radius: 20px;
+    }
+
+    /* Text sides: stack below photo */
+    .face__side {
+        position: relative;
+        width: 100%;
+        height: auto;
+        text-align: center !important;
+        justify-content: center !important;
+        padding: 0 16px !important;
+    }
+
+    .face__side--left {
+        order: 2;
+    }
+
+    .face__side--right {
+        order: 3;
+    }
+
+    /* Override right-side dark colors for mobile (bg is now all dark) */
+    .face__side--right .face__title {
+        color: var(--pure-white);
+    }
+
+    .face__side--right .face__subtitle {
+        color: var(--gray);
+    }
+
+    .face__side--right .face__subtitle strong {
+        color: var(--pure-white);
+    }
+
+    .face__side--right .face__badge {
+        color: #38d9a9;
+    }
+
+    .face__desc {
+        max-width: 100%;
     }
 
     .face__title {
-        font-size: 2.2rem;
+        font-size: 2rem;
+        margin-bottom: 10px;
     }
 
-    /* Cards */
+    .face__subtitle {
+        font-size: 0.9rem;
+    }
+
+    .face__badge {
+        font-size: 0.72rem;
+    }
+
+    /* Hide decorations on mobile */
+    .face__code,
+    .face__paint,
+    .face__bg {
+        display: none;
+    }
+
+
+    /* -- Sections -- */
+    .section {
+        padding: 50px 16px;
+    }
+
+    .section__header {
+        margin-bottom: 32px;
+    }
+
+    .section__title {
+        font-size: 0.72rem;
+        padding: 0 16px;
+    }
+
+    /* Cards: single column */
     .card-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .card__thumb {
+        height: 140px;
+    }
+
+    .card__body {
+        padding: 16px;
+    }
+
+    .card__title {
+        font-size: 0.95rem;
+    }
+
+    .card__sub {
+        font-size: 0.82rem;
+    }
+
+
+    /* -- Contact -- */
+    .contact-wrap {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .contact-form {
+        padding: 24px 20px;
+    }
+
+    .contact-form__row {
         grid-template-columns: 1fr;
     }
 
-    /* Footer */
+    .contact-form__btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+
+    /* -- Hashtags -- */
+    .hashtags {
+        gap: 8px;
+    }
+
+    .hashtag {
+        font-size: 0.7rem;
+        padding: 4px 12px;
+    }
+
+
+    /* -- Footer -- */
+    .footer {
+        padding: 24px 16px;
+    }
+
     .footer__inner {
         flex-direction: column;
-        gap: 16px;
+        gap: 12px;
         text-align: center;
+    }
+
+    .footer__nav {
+        gap: 16px;
+    }
+
+    .footer__top {
+        bottom: -16px;
     }
 }
 
-/* ---- RTL layout adjustments ---- */
+
+/* ---- Small phone (max 400px) ---- */
+@media (max-width: 400px) {
+    .face__photo-wrap {
+        width: 200px;
+        height: 250px;
+    }
+
+    .face__title {
+        font-size: 1.6rem;
+    }
+
+    .face__subtitle {
+        font-size: 0.82rem;
+    }
+
+    .header__controls {
+        gap: 6px;
+    }
+
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .contact-form {
+        padding: 20px 16px;
+    }
+}
+
+
+/* =====================
+   RTL layout adjustments
+   ===================== */
 body.rtl .face__side--left {
     left: auto;
     right: 0;
@@ -162,4 +350,12 @@ body.rtl .timeline__dot {
 
 body.rtl .footer__nav {
     direction: ltr;
+}
+
+/* RTL on mobile */
+@media (max-width: 768px) {
+    body.rtl .face__side {
+        text-align: center !important;
+        padding: 0 16px !important;
+    }
 }
