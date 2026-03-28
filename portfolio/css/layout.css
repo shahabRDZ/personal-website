@@ -10,7 +10,7 @@
     right: 0;
     z-index: 100;
     height: var(--header-h);
-    background: #111;
+    background: var(--dark);
     padding: 0 5%;
 }
 
@@ -83,6 +83,16 @@
     height: 2px;
     background: var(--pure-white);
     transition: all 0.3s;
+}
+
+.nav-toggle--open .nav-toggle__bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.nav-toggle--open .nav-toggle__bar:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle--open .nav-toggle__bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* ---- Controls group (theme toggle + lang switch) ---- */

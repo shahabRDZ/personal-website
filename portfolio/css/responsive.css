@@ -67,8 +67,18 @@
         margin-right: 8px;
     }
 
-    .lang-switch {
-        display: none;
+    .header__controls .lang-switch { display: none; }
+    .lang-switch--mobile { display: none; padding-top: 16px; }
+    .nav--open ~ .lang-switch--mobile,
+    .nav .lang-switch--mobile { display: flex; }
+
+    body.light .nav {
+        background: #fff;
+        border-left-color: #e0e0e0;
+    }
+    body.light .nav__link {
+        color: #333;
+        border-bottom-color: #e0e0e0;
     }
 
 

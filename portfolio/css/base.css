@@ -77,3 +77,18 @@ button {
     background: none;
     cursor: pointer;
 }
+
+/* Accessibility: focus states */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    transform: translateY(-4px);
+}

@@ -74,3 +74,19 @@
 .card-grid .card:nth-child(4) { transition-delay: 0.24s; }
 .card-grid .card:nth-child(5) { transition-delay: 0.32s; }
 .card-grid .card:nth-child(6) { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+    .card { opacity: 1; transform: none; }
+}
+
+/* Fallback if JS doesn't load */
+.card:not(.is-visible) {
+    animation: cardFallback 0s 3s forwards;
+}
+@keyframes cardFallback {
+    to { opacity: 1; transform: none; }
+}

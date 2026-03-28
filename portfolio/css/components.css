@@ -97,3 +97,8 @@ body.light .card:hover {
 
 body.light .card__title { color: #111; }
 body.light .card__sub { color: #757575; }
+
+@media (hover: none) {
+    .card:hover { transform: none; box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+    .card__thumb-icon { opacity: 0.5; }
+}
