@@ -414,12 +414,16 @@
 
         <div class="contact-wrap">
             <!-- Message form -->
-            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST" id="contactForm">
+            <form class="contact-form" action="https://formsubmit.co/rashidian.shahab@gmail.com" method="POST" id="contactForm">
                 <h3 class="contact-form__title" data-i18n="contact_form_title">Send me a message</h3>
                 <div class="contact-form__row">
                     <div class="contact-form__field">
                         <label for="name" data-i18n="contact_name">Name</label>
                         <input type="text" id="name" name="name" data-i18n-placeholder="contact_name_ph" placeholder="Your name" required>
+                        <input type="hidden" name="_next" value="https://shahabrdz.dev">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="New message from shahabrdz.dev">
+                        <input type="hidden" name="_template" value="table">
                     </div>
                     <div class="contact-form__field">
                         <label for="email" data-i18n="contact_email">Email</label>
