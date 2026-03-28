@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shahab Rashidian Dezfuly — Software Engineer & Cloud Architect</title>
+    <meta name="description" content="Senior Full Stack Developer, DevOps Engineer & AWS Cloud Architect based in Istanbul. Building scalable systems that matter.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+
+    <!-- Spotlight that follows cursor -->
+    <div class="spotlight" id="spotlight"></div>
+
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="#top" class="logo">shahab<span>.</span></a>
+            <nav class="nav" id="nav">
+                <a href="#about">about</a>
+                <a href="#services">services</a>
+                <a href="#projects">projects</a>
+                <a href="#experience">experience</a>
+                <a href="#certifications">certifications</a>
+                <a href="#contact">contact</a>
+            </nav>
+            <div class="header-social">
+                <a href="https://www.linkedin.com/in/shahab-rashidian-17647a166/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/shahabRDZ" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <canvas id="gridCanvas"></canvas>
+        </div>
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span> Open to opportunities
+                </div>
+                <h1>
+                    <span class="hero-line-1">I build things</span>
+                    <span class="hero-line-2">for the <span class="highlight">web</span> & <span class="highlight">cloud</span>.</span>
+                </h1>
+                <p class="hero-subtitle" id="typedText"></p>
+                <p class="hero-desc">
+                    Computer engineer with expertise in backend systems, cloud architecture,
+                    DevOps pipelines, and cross-platform mobile apps. I turn complex problems
+                    into clean, scalable solutions.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn-primary">See my work <i class="fas fa-arrow-down"></i></a>
+                    <a href="#contact" class="btn-ghost">Get in touch</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="profile-frame">
+                    <img src="profile.jpg" alt="Shahab Rashidian Dezfuly" class="profile-img"
+                         onerror="this.parentElement.classList.add('no-photo')">
+                    <div class="profile-fallback">
+                        <span class="fallback-initials">SR</span>
+                    </div>
+                    <div class="profile-ring"></div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num" data-target="5">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Years<br>Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num" data-target="15">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Projects<br>Delivered</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num" data-target="12">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Tech<br>Stack</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">about<span>.</span></h2>
+            <p class="section-subtitle">A few things about me and what I do.</p>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        I'm a Computer Engineering graduate from <strong>Sharif University of Technology</strong> —
+                        one of the most competitive engineering programs in the region. Over the past several years,
+                        I've worked across the full spectrum of software development: from building backend APIs at
+                        scale, to designing cloud-native architectures on AWS, to shipping cross-platform mobile
+                        apps with Flutter.
+                    </p>
+                    <p>
+                        I believe great software starts with understanding the problem deeply before writing a
+                        single line of code. Whether I'm setting up CI/CD pipelines, optimizing database queries,
+                        or prototyping a new mobile experience, I care about building things that are reliable,
+                        maintainable, and genuinely useful.
+                    </p>
+                    <p>
+                        When I'm not coding, you'll find me exploring new AI tools, reading about distributed
+                        systems, or mentoring junior developers — something I've done since my time as a TA at
+                        Sharif.
+                    </p>
+                </div>
+                <div class="about-details">
+                    <div class="detail-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <strong>B.Sc. Computer Engineering</strong>
+                            <span>Sharif University of Technology</span>
+                            <span>GPA: 17.54 / 20</span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Based in Istanbul</strong>
+                            <span>Available worldwide (remote)</span>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <i class="fas fa-language"></i>
+                        <div>
+                            <strong>English — Fluent</strong>
+                            <span>TOEFL: 103/120</span>
+                            <span>Persian — Native</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / What I Do -->
+    <section class="section section-alt" id="services">
+        <div class="container">
+            <h2 class="section-title">what I do<span>.</span></h2>
+            <p class="section-subtitle">The services and expertise I bring to every project.</p>
+            <div class="services-grid">
+                <div class="service-card" data-aos>
+                    <div class="service-icon"><i class="fas fa-server"></i></div>
+                    <h3>Backend Development</h3>
+                    <p>Designing and building robust APIs, microservices, and server-side systems with Python, PHP, ASP.NET, and SQL databases that handle real-world traffic at scale.</p>
+                </div>
+                <div class="service-card" data-aos>
+                    <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+                    <h3>Full Stack Engineering</h3>
+                    <p>End-to-end development from database schema to pixel-perfect UI. I own the entire stack so nothing gets lost in translation between front and back.</p>
+                </div>
+                <div class="service-card" data-aos>
+                    <div class="service-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>AWS Cloud Architecture</h3>
+                    <p>Infrastructure design on AWS — from EC2 and S3 to Lambda and RDS. I architect systems that are secure, cost-efficient, and ready to scale.</p>
+                </div>
+                <div class="service-card" data-aos>
+                    <div class="service-icon"><i class="fas fa-infinity"></i></div>
+                    <h3>DevOps & CI/CD</h3>
+                    <p>Containerization with Docker, automated pipelines, infrastructure as code. I make deployments boring — which is exactly how they should be.</p>
+                </div>
+                <div class="service-card" data-aos>
+                    <div class="service-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                    <h3>Mobile Development</h3>
+                    <p>Cross-platform mobile apps with Flutter and Dart. One codebase, native performance, beautiful interfaces on both iOS and Android.</p>
+                </div>
+                <div class="service-card" data-aos>
+                    <div class="service-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <h3>Vibe Coding & AI</h3>
+                    <p>Leveraging AI-assisted development for rapid prototyping and creative problem-solving. Prompt engineering, machine learning, and data-driven insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-title">projects<span>.</span></h2>
+            <p class="section-subtitle">Things I've built — from research to production.</p>
+            <div class="projects-grid">
+
+                <!-- Featured -->
+                <a href="https://github.com/shahabRDZ/GAME.Mafia" target="_blank" rel="noopener" class="project-card featured" data-aos>
+                    <div class="project-thumb">
+                        <div class="thumb-placeholder"><i class="fas fa-masks-theater"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Web App — 2026</span>
+                        <h3>Mafia Party Game</h3>
+                        <p>A real-time multiplayer Mafia game for the web. Containerized with Docker for easy deployment, featuring role assignment, voting mechanics, and live game state management.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>HTML</span><span>Docker</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/shahabRDZ/HD-desk" target="_blank" rel="noopener" class="project-card" data-aos>
+                    <div class="project-thumb">
+                        <div class="thumb-placeholder"><i class="fas fa-headset"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Full Stack — 2023</span>
+                        <h3>HDesk Ticketing System</h3>
+                        <p>A help desk ticketing platform for managing support requests. Features ticket creation, assignment, status tracking, and a clean dashboard interface.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>HTML</span><span>CSS</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/shahabRDZ/Online_Shop" target="_blank" rel="noopener" class="project-card" data-aos>
+                    <div class="project-thumb">
+                        <div class="thumb-placeholder"><i class="fas fa-cart-shopping"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Frontend — 2023</span>
+                        <h3>Online Shop</h3>
+                        <p>A modern e-commerce storefront with product browsing, filtering, and a responsive shopping experience built from scratch.</p>
+                        <div class="tech-stack">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="https://github.com/shahabRDZ/Graphic-Online-Chat-Program" target="_blank" rel="noopener" class="project-card" data-aos>
+                    <div class="project-thumb">
+                        <div class="thumb-placeholder"><i class="fas fa-comments"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Desktop App — 2023</span>
+                        <h3>Graphic Chat Program</h3>
+                        <p>A two-person graphic online chat application with real-time messaging and file sharing capability. Built with Python's socket programming and GUI frameworks.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>Sockets</span><span>GUI</span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="project-card" data-aos>
+                    <div class="project-thumb">
+                        <div class="thumb-placeholder"><i class="fas fa-shield-halved"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">B.Sc. Thesis — 2023</span>
+                        <h3>Zero Trust Network Security</h3>
+                        <p>My final thesis at Sharif University. Investigated vulnerabilities in traditional networks and implemented a Zero Trust security model to address modern threat landscapes. Supervised by Dr. Hadi Talebi.</p>
+                        <div class="tech-stack">
+                            <span>Network Security</span><span>Zero Trust</span><span>Research</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://github.com/shahabRDZ/Numerical-Integration" target="_blank" rel="noopener" class="project-card" data-aos>
+                    <div class="project-thumb">
+                        <div class="thumb-placeholder"><i class="fas fa-square-root-variable"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Scientific Computing — 2021</span>
+                        <h3>Numerical Integration Engine</h3>
+                        <p>A versatile numerical integrator for computing integrals of arbitrary bounded functions over any interval, with advanced error control mechanisms.</p>
+                        <div class="tech-stack">
+                            <span>R</span><span>Numerical Analysis</span>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="project-card" data-aos>
+                    <div class="project-thumb">
+                        <div class="thumb-placeholder"><i class="fas fa-train-subway"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Simulation — 2022</span>
+                        <h3>M/G/2 Queueing Simulation</h3>
+                        <p>Simulated and analyzed the performance of a dual-line train station using M/G/2 queueing theory. Tested various arrival rates and service distributions to optimize throughput.</p>
+                        <div class="tech-stack">
+                            <span>R</span><span>Queueing Theory</span><span>Statistics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos>
+                    <div class="project-thumb">
+                        <div class="thumb-placeholder"><i class="fas fa-chart-bar"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Data Mining — 2021</span>
+                        <h3>E-Commerce Pattern Mining</h3>
+                        <p>Analyzed customer purchase data from Digikala (Iran's largest e-commerce) using Apriori and FPGrowth algorithms to discover frequent buying patterns and calculate support/confidence metrics.</p>
+                        <div class="tech-stack">
+                            <span>Data Mining</span><span>Apriori</span><span>FPGrowth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://github.com/shahabRDZ/cacti-menu" target="_blank" rel="noopener" class="project-card" data-aos>
+                    <div class="project-thumb">
+                        <div class="thumb-placeholder"><i class="fas fa-utensils"></i></div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">Web App — 2025</span>
+                        <h3>Cacti Menu</h3>
+                        <p>A digital menu and ordering system for restaurants, built with Python backend and a clean HTML frontend.</p>
+                        <div class="tech-stack">
+                            <span>Python</span><span>HTML</span><span>Web</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section section-alt" id="experience">
+        <div class="container">
+            <h2 class="section-title">experience<span>.</span></h2>
+            <p class="section-subtitle">Where I've worked and what I've built.</p>
+            <div class="timeline">
+                <div class="timeline-item" data-aos>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-meta">
+                            <span class="timeline-date">Aug 2022 — Present</span>
+                            <span class="badge-current">Current</span>
+                        </div>
+                        <h3>Freelance Software Developer</h3>
+                        <p class="timeline-company">Independent — Remote</p>
+                        <p>Building end-to-end software solutions for clients across industries. From backend APIs and cloud deployments to mobile apps and DevOps pipelines — I handle the full lifecycle from architecture to production.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-meta">
+                            <span class="timeline-date">2021 — 2023</span>
+                        </div>
+                        <h3>Teaching Assistant</h3>
+                        <p class="timeline-company">Sharif University of Technology — Supervisor: Dr. Farahani</p>
+                        <p>TA for three courses: Information Technology (Spring 2023), Design of Compilers (Fall 2022), and Analysis & Design of Systems (Fall 2021). Graded assignments, held office hours, and mentored students on course projects.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-meta">
+                            <span class="timeline-date">Jul 2022 — Nov 2022</span>
+                        </div>
+                        <h3>Backend Developer</h3>
+                        <p class="timeline-company">Zino Tech — Kish Island, Iran</p>
+                        <p>Developed backend services and REST APIs for the company's products. Worked on database optimization, server-side logic, and integration with third-party services.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-meta">
+                            <span class="timeline-date">Apr 2019 — Sep 2019</span>
+                        </div>
+                        <h3>Backend Developer</h3>
+                        <p class="timeline-company">AloPeyk</p>
+                        <p>Backend development at one of Iran's leading on-demand delivery platforms. Built scalable services handling high-volume logistics operations — real-time order routing, driver assignment, and delivery tracking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Publications -->
+    <section class="section" id="certifications">
+        <div class="container">
+            <h2 class="section-title">certifications & research<span>.</span></h2>
+            <p class="section-subtitle">Courses I've completed and papers I've published.</p>
+
+            <div class="certs-grid">
+                <h3 class="certs-group-title"><i class="fas fa-certificate"></i> Certifications</h3>
+                <div class="certs-list">
+                    <div class="cert-card" data-aos>
+                        <div class="cert-icon"><i class="fab fa-google"></i></div>
+                        <div class="cert-info">
+                            <strong>Google Ads Search Certificate</strong>
+                            <span>Google</span>
+                        </div>
+                    </div>
+                    <div class="cert-card" data-aos>
+                        <div class="cert-icon"><i class="fas fa-code"></i></div>
+                        <div class="cert-info">
+                            <strong>PHP with MySQL — Build Real Estate Management System</strong>
+                            <span>Udemy</span>
+                        </div>
+                    </div>
+                    <div class="cert-card" data-aos>
+                        <div class="cert-icon"><i class="fas fa-users-gear"></i></div>
+                        <div class="cert-info">
+                            <strong>Leadership Theory, Skill Development, Motivation & Application</strong>
+                            <span>Udemy</span>
+                        </div>
+                    </div>
+                    <div class="cert-card" data-aos>
+                        <div class="cert-icon"><i class="fas fa-box"></i></div>
+                        <div class="cert-info">
+                            <strong>Product Management</strong>
+                            <span>Great Learning</span>
+                        </div>
+                    </div>
+                    <div class="cert-card" data-aos>
+                        <div class="cert-icon"><i class="fas fa-list-check"></i></div>
+                        <div class="cert-info">
+                            <strong>Project Management + Scrum Project Delivery</strong>
+                            <span>Udemy</span>
+                        </div>
+                    </div>
+                    <div class="cert-card" data-aos>
+                        <div class="cert-icon"><i class="fas fa-flask"></i></div>
+                        <div class="cert-info">
+                            <strong>Certificate of Initial Acceptance</strong>
+                            <span>8th International Conference on Applied Research in Basic Sciences, Engineering & Technology</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="certs-group-title" style="margin-top:56px;"><i class="fas fa-book-open"></i> Publications</h3>
+                <div class="certs-list">
+                    <div class="cert-card pub" data-aos>
+                        <div class="cert-icon"><i class="fas fa-file-lines"></i></div>
+                        <div class="cert-info">
+                            <strong>Examining the Negative Effects of Virtual Networks for Children and Teenagers</strong>
+                            <span>A. Ranjbar, S. Novkarizi, <em>S. Rashidian Dezfuly</em> — Avicenna Int'l Community College, Sep 2023</span>
+                        </div>
+                    </div>
+                    <div class="cert-card pub" data-aos>
+                        <div class="cert-icon"><i class="fas fa-file-lines"></i></div>
+                        <div class="cert-info">
+                            <strong>Analysis of Applications of Internet of Things in Healthcare</strong>
+                            <span>A. Zakarian, M. Rahmani, <em>S. Rashidian Dezfuly</em> — Avicenna Int'l Community College, Sep 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-alt" id="contact">
+        <div class="container contact-container">
+            <h2 class="section-title">let's talk<span>.</span></h2>
+            <p class="section-subtitle">Have a project in mind or want to collaborate? I'd love to hear from you.</p>
+            <div class="contact-cards">
+                <a href="https://www.linkedin.com/in/shahab-rashidian-17647a166/" target="_blank" rel="noopener" class="contact-link-card">
+                    <i class="fab fa-linkedin-in"></i>
+                    <strong>LinkedIn</strong>
+                    <span>Let's connect <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="https://github.com/shahabRDZ" target="_blank" rel="noopener" class="contact-link-card">
+                    <i class="fab fa-github"></i>
+                    <strong>GitHub</strong>
+                    <span>See my code <i class="fas fa-arrow-right"></i></span>
+                </a>
+            </div>
+            <p class="contact-note">For business inquiries, reach out via LinkedIn direct message.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <a href="#top" class="logo">shahab<span>.</span></a>
+            <p>&copy; 2026 Shahab Rashidian Dezfuly. Built with passion.</p>
+            <a href="#top" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
