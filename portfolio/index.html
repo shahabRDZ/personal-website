@@ -414,16 +414,12 @@
 
         <div class="contact-wrap">
             <!-- Message form -->
-            <form class="contact-form" action="https://formsubmit.co/rashidian.shahab@gmail.com" method="POST" id="contactForm">
+            <form class="contact-form" action="#" method="POST" id="contactForm" onsubmit="return sendForm(event)">
                 <h3 class="contact-form__title" data-i18n="contact_form_title">Send me a message</h3>
                 <div class="contact-form__row">
                     <div class="contact-form__field">
                         <label for="name" data-i18n="contact_name">Name</label>
                         <input type="text" id="name" name="name" data-i18n-placeholder="contact_name_ph" placeholder="Your name" required>
-                        <input type="hidden" name="_next" value="https://shahabrdz.dev">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_subject" value="New message from shahabrdz.dev">
-                        <input type="hidden" name="_template" value="table">
                     </div>
                     <div class="contact-form__field">
                         <label for="email" data-i18n="contact_email">Email</label>
@@ -518,6 +514,35 @@
 
     <script src="js/hero.js"></script>
     <script src="js/app.js"></script>
+
+    <script>
+    function sendForm(e) {
+        e.preventDefault();
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var subject = document.getElementById('subject').value;
+        var message = document.getElementById('message').value;
+
+        var body = 'Name: ' + name + '%0D%0AEmail: ' + email + '%0D%0A%0D%0A' + message;
+        var mailto = 'mailto:rashidian.shahab@gmail.com?subject=' + encodeURIComponent(subject || 'Message from shahabrdz.dev') + '&body=' + body;
+
+        window.open(mailto, '_blank');
+
+        // Show success message
+        var btn = document.querySelector('.contact-form__btn');
+        var originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Opening email client...';
+        btn.style.background = '#38d9a9';
+
+        setTimeout(function() {
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            document.getElementById('contactForm').reset();
+        }, 3000);
+
+        return false;
+    }
+    </script>
 
     <script>
     // ── i18n translations ──────────────────────────────────────────
