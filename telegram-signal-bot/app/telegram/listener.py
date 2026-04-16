@@ -57,22 +57,46 @@ class ChannelListener(BaseTelegramClient):
         if not await self._client.is_user_authorized():
             self._logger.error("Not logged in — run 'python login.py' first")
             return False
+
+        # Resolve channel entities once at startup for fast filtering
+        self._channel_ids = set()
+        self._channel_names = {}
+        active = self._channels.get_active_usernames()
+        for uname in active:
+            try:
+                entity = await self._client.get_entity(uname)
+                self._channel_ids.add(entity.id)
+                self._channel_names[entity.id] = uname
+                self._logger.info(f"Resolved channel: @{uname} (ID: {entity.id})")
+            except Exception as exc:
+                self._logger.warning(f"Cannot resolve @{uname}: {exc}")
+
         self._register_handlers()
         self._logger.info("Listener started")
         self._logs.add("INFO", "listener", "Listener started")
         return True
 
+    def refresh_channels(self) -> None:
+        """Call after adding/removing channels at runtime."""
+        # Will be resolved on next restart; for now log a note
+        self._logger.info("Channel list changed — restart to pick up new channels")
+
     def _register_handlers(self) -> None:
 
-        @self._client.on(events.NewMessage())
+        @self._client.on(events.NewMessage(chats=self._channel_ids or None))
         async def _on_new_message(event: events.NewMessage.Event) -> None:
-            chat = await event.get_chat()
-            username = getattr(chat, "username", None) or ""
-            title = getattr(chat, "title", None) or username or "unknown"
+            chat_id = event.chat_id
+            username = self._channel_names.get(chat_id, "")
+            title = username or "unknown"
 
-            active = self._channels.get_active_usernames()
-            if username and username.lower() not in [u.lower() for u in active]:
-                return
+            if not username:
+                # Fallback for channels not pre-resolved
+                chat = await event.get_chat()
+                username = getattr(chat, "username", None) or ""
+                title = getattr(chat, "title", None) or username or "unknown"
+                active = self._channels.get_active_usernames()
+                if username and username.lower() not in [u.lower() for u in active]:
+                    return
 
             raw_text = event.message.text or ""
             if not raw_text:
@@ -130,23 +154,22 @@ class ChannelListener(BaseTelegramClient):
                 return
 
             parsed = self._parser.parse(raw_text)
-            if not parsed and is_sig:
+            if not parsed:
                 parsed = ParsedSignal(pair="UNKNOWN", direction="UNKNOWN")
 
-            if parsed:
-                formatted = self._formatter.format(parsed, self._settings.message_template)
-                signal_id = self._signals.save(
-                    raw_message_id=raw_id,
-                    parsed=parsed,
-                    raw_text=raw_text,
-                    formatted_text=formatted,
-                )
-                self._logger.info(f"Signal: {parsed.pair} {parsed.direction}")
-                self._logs.add("INFO", "parser", f"Signal: {parsed.pair} {parsed.direction}")
+            formatted = self._formatter.format(parsed, self._settings.message_template)
+            signal_id = self._signals.save(
+                raw_message_id=raw_id,
+                parsed=parsed,
+                raw_text=raw_text,
+                formatted_text=formatted,
+            )
+            self._logger.info(f"Signal: {parsed.pair} {parsed.direction}")
+            self._logs.add("INFO", "parser", f"Signal: {parsed.pair} {parsed.direction}")
 
-                if self._settings.send_enabled and self._on_signal:
-                    try:
-                        await self._on_signal(signal_id, formatted, event.message.media, parsed.pair)
-                    except Exception as exc:
-                        self._logger.error(f"Signal handler error (#{signal_id} {parsed.pair}): {exc}")
-                        self._logs.add("ERROR", "listener", f"Signal handler error: {exc}")
+            if self._settings.send_enabled and self._on_signal:
+                try:
+                    await self._on_signal(signal_id, formatted, event.message.media, parsed.pair)
+                except Exception as exc:
+                    self._logger.error(f"Signal handler error (#{signal_id} {parsed.pair}): {exc}")
+                    self._logs.add("ERROR", "listener", f"Signal handler error: {exc}")
