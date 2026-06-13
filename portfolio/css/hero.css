@@ -86,7 +86,7 @@ body.light .hero::before {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 18%;
+    object-position: center 15%;
     transform: scale(0.92);
     transform-origin: center 22%;
 }
@@ -105,7 +105,6 @@ body.light .hero::before {
     object-position: center 15%;
     transform: scale(0.92);
     transform-origin: center 22%;
-    /* No filters — keep original clean look */
 }
 
 
